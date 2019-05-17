@@ -7,15 +7,18 @@ const dateFns = require('date-fns');
 
 const DIR_IN = './output';
 const DIR_OUT = './output';
+const END_DATE = new Date('2019/05/14');
 
 function init() {
 	const output = {};
 	let index = 0;
 
 	const fileIn = `${DIR_IN}/checkouts--books-small.csv`;
-	const fileOut = `${DIR_OUT}/checkout-days.csv`;
+	const fileOut1 = `${DIR_OUT}/checkout-days.csv`;
+	const fileOut2 = `${DIR_OUT}/checkout-days--agg.csv`;
 	const reader = fs.createReadStream(fileIn);
-	rimraf.sync(fileOut);
+	rimraf.sync(fileOut1);
+	rimraf.sync(fileOut2);
 	mkdirp(DIR_OUT);
 	 
 	papa.parse(reader, {
@@ -58,8 +61,8 @@ function init() {
 
 			nested.sort((a, b) => d3.ascending(a.days, b.days));
 
-
-			fs.writeFileSync(fileOut, d3.csvFormat(nested));
+			fs.writeFileSync(fileOut1, d3.csvFormat(withDays));
+			fs.writeFileSync(fileOut2, d3.csvFormat(nested));
 		}
 	});
 }

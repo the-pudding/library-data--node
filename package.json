@@ -9,7 +9,8 @@
 		"reduce-checkouts-small": "node --max-old-space-size=8192 scripts/reduce-checkouts-small.js",
 		"reduce-inventory": "node --max-old-space-size=8192 scripts/reduce-inventory.js",
 		"calculate-checkout-days": "node --max-old-space-size=8192 scripts/calculate-checkout-days.js",
-		"calculate-checkout-counts": "node --max-old-space-size=8192 scripts/calculate-checkout-counts.js"
+		"calculate-checkout-counts": "node --max-old-space-size=8192 scripts/calculate-checkout-counts.js",
+		"calculate-inventory-days": "node --max-old-space-size=8192 scripts/calculate-inventory-days.js"
 	},
 	"keywords": [],
 	"author": "",
