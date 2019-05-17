@@ -1,0 +1,28 @@
+{
+	"name": "library",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"filter-book-codes": "node --max-old-space-size=8192 scripts/filter-book-codes.js",
+		"reduce-checkouts": "node --max-old-space-size=8192 scripts/reduce-checkouts.js",
+		"reduce-checkouts-small": "node --max-old-space-size=8192 scripts/reduce-checkouts-small.js",
+		"reduce-inventory": "node --max-old-space-size=8192 scripts/reduce-inventory.js",
+		"calculate-last-checkout": "node --max-old-space-size=8192 scripts/calculate-last-checkout.js",
+		"calculate-count-checkout": "node --max-old-space-size=8192 scripts/calculate-count-checkout.js",
+		"stats-last-checkout": "node --max-old-space-size=8192 scripts/stats-last-checkout.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"csv-parser": "2.3.0",
+		"d3": "5.9.2",
+		"date-fns": "1.30.1",
+		"lodash.uniqby": "4.7.0",
+		"mkdirp": "0.5.1",
+		"papaparse": "4.6.3",
+		"request": "2.88.0",
+		"rimraf": "2.6.3"
+	}
+}
