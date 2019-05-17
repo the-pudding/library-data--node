@@ -8,9 +8,8 @@
 		"reduce-checkouts": "node --max-old-space-size=8192 scripts/reduce-checkouts.js",
 		"reduce-checkouts-small": "node --max-old-space-size=8192 scripts/reduce-checkouts-small.js",
 		"reduce-inventory": "node --max-old-space-size=8192 scripts/reduce-inventory.js",
-		"calculate-last-checkout": "node --max-old-space-size=8192 scripts/calculate-last-checkout.js",
-		"calculate-count-checkout": "node --max-old-space-size=8192 scripts/calculate-count-checkout.js",
-		"stats-last-checkout": "node --max-old-space-size=8192 scripts/stats-last-checkout.js"
+		"calculate-checkout-days": "node --max-old-space-size=8192 scripts/calculate-checkout-days.js",
+		"calculate-checkout-counts": "node --max-old-space-size=8192 scripts/calculate-checkout-counts.js"
 	},
 	"keywords": [],
 	"author": "",

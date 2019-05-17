@@ -3,6 +3,7 @@ const d3 = require('d3');
 const mkdirp = require('mkdirp');
 const rimraf = require('rimraf');
 const papa = require('papaparse');
+const dateFns = require('date-fns');
 
 const DIR_IN = './output';
 const DIR_OUT = './output';
@@ -12,7 +13,7 @@ function init() {
 	let index = 0;
 
 	const fileIn = `${DIR_IN}/checkouts--books-small.csv`;
-	const fileOut = `${DIR_OUT}/last-checkout.csv`;
+	const fileOut = `${DIR_OUT}/checkout-days.csv`;
 	const reader = fs.createReadStream(fileIn);
 	rimraf.sync(fileOut);
 	mkdirp(DIR_OUT);
@@ -40,13 +41,27 @@ function init() {
 			index += data.length;
 		},
 		complete: () => {
-			console.time('complete');
-			const arr = Object.keys(output).map(k => ({BibNumber: k, CheckoutDateTime: output[k]}));
-			fs.writeFileSync(fileOut, d3.csvFormat(arr));
-			console.timeEnd('complete');
+			const data = Object.keys(output).map(k => ({BibNumber: k, CheckoutDateTime: output[k]}));
+			const withDays = data.map(d => ({
+				...d,
+				days: dateFns.differenceInDays(END_DATE, new Date(d.CheckoutDateTime))
+			}));
+
+			const nested = d3.nest()
+				.key(d => d.days)
+				.rollup(values => ({
+					days: values[0].days,
+					count: values.length
+				}))
+				.entries(withDays)
+				.map(d => d.value);
+
+			nested.sort((a, b) => d3.ascending(a.days, b.days));
+
+
+			fs.writeFileSync(fileOut, d3.csvFormat(nested));
 		}
 	});
 }
 
-console.log('uncomment to run');
-// init();
+init();

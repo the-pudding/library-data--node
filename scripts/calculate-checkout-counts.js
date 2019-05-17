@@ -33,14 +33,11 @@ function init() {
 			index += data.length;
 		},
 		complete: () => {
-			console.time('complete');
 			const arr = Object.keys(output).map(k => ({ BibNumber: k, count: output[k] }));
 			arr.sort((a, b) => d3.descending(a.count, b.count));
 			fs.writeFileSync(fileOut, d3.csvFormat(arr));
-			console.timeEnd('complete');
 		}
 	});
 }
 
-// console.log('uncomment to run');
 init();
